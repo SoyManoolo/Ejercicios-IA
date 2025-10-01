@@ -17,6 +17,7 @@ bs_data = [
 bs_data_clean = []
 
 distance = 0
+all_distances = []
 
 best = float('inf')
 
@@ -27,9 +28,16 @@ best = float('inf')
 
 # Funcion para limpiar la lista y que solo queden coordenadas con numeros enteros - LISTO
 def clean_list(lista:List):
-    for point in lista: # Recorro la lista
+    no_duplicates = []
+    print("Lista bs_data en la funcion clean_list: ",bs_data)
+    for point in lista:
+        if point not in no_duplicates:
+            no_duplicates.append(point)
+
+    for point in no_duplicates:
         if type(point["x"]) == int and type(point["y"]) == int: # Compruebo de si los valores son enteros
             bs_data_clean.append(point) # Si es entero lo introduzco en la nueva lista
+    print("Lista limpia devuelta en la funcion clean_list: ", bs_data_clean)
     bus_stops(bs_data_clean)
 
 # Funcion que calcula la distancia entre dos puntos - Revisar la extraccion de coordenadas
@@ -38,25 +46,31 @@ def calc_distance(point1: Dict, point2: Dict):
     y1 = point1['y']
     x2 = point2['x']
     y2 = point2['y']
-    print(x1,y1,x2,y2)
+    print("Coordenadas entre las que voy a calcular la distancia en la funcion calc_distance: ", x1,y1,x2,y2)
     return math.sqrt(math.pow(x2-x1,2)+math.pow(y2-y1,2)) # Calculo la distancia entre estos dos puntos y lo devuelvo
 
 
 def bus_stops(lista: List):
-    queda: List = bs_data_clean.copy() # Copio la lista para no modificar la original
     for actual_point in lista:
-        print(queda)
+        distance = 0
+        queda: List = bs_data_clean.copy() # Copio la lista para no modificar la original
+        print("Voy por el punto en la funcion bus_stops: ", actual_point)
+        print("Lista de coordenadas que quedan en la funcion bus_stops: ", queda)
         queda.remove(actual_point)
         best_way(actual_point, queda)
-    #print(lista)
+        print("Todas las distanias: ", all_distances)
 
 # Funcion que mira cual es la mejor opcion entre diferentes puntos
 def best_way(actual_point: Dict, queda: List):
-    print(queda)
+    if not queda:  # o len(queda) == 0
+        print("No quedan más puntos. Fin de esta rama.")
+        return
+    print("Lista de coordenadas que quedan en la funcion bus_stops: ", queda)
     for point in queda: # Recorro todas las coordenadas restantes y calculo las distancias con el punto actual
         queda.remove(point)
-        print(calc_distance(actual_point, point))
-        best_way(point, queda)
+        print("Distancia calculada entre los dos puntos: ", calc_distance(actual_point, point))
+        distance += best_way(point, queda)
+    all_distances.append(distance)
     return
 
 clean_list(bs_data)
