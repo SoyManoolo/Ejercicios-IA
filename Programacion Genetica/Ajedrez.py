@@ -41,7 +41,7 @@ def crossover(individu1, individu2):
 
     if random.randint(1, 100) <= 10:
         i, j = random.sample(range(len(new_ind)), 2)
-        new_ind[i], new_ind[j] = new_ind[j], new_ind[i]    
+        new_ind[i], new_ind[j] = new_ind[j], new_ind[i]
         print(f"Individuo mutado: {new_ind}")
 
     return new_ind
@@ -57,18 +57,18 @@ def fitness(mida_tauler, poblacion_actual):
                 if abs(individu[i] - individu[j]) == abs(i - j):
                     choques += 1
         fitness_actual.append(choques)
-        
+
         if choques == 0:
             print(f"Este es uno de los posibles resultados: {individu}")
             return fitness_actual, True
-    
+
     return fitness_actual, False
 
 # Funcion para elegir los individuos que permanecerán en la siguiente generacion
 def selection(pop_actual, fit_actual, pop_anterior = None, fit_anterior = None):
     new_poblation = []
     #for i in fit_actual:
-    
+
     #for i in fit_anterior:
 
     return new_poblation
