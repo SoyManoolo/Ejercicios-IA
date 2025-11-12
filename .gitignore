@@ -1,4 +1,5 @@
 /.venv
 /.vscode
-/ML/iris/iris-env
-/ML/wine/wine-env
+iris-env
+wine-env
+apple-env
