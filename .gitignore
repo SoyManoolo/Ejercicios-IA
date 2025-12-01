@@ -3,3 +3,6 @@
 iris-env
 wine-env
 apple-env
+heart-venv
+mnist-env
+__pycache__
