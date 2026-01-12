@@ -10,3 +10,12 @@ a-venv
 .venv
 data
 venv-skin
+
+# Archivos de modelos grandes
+*.pth
+*.h5
+*.weights
+*.ckpt
+*.model
+*.pkl
+*.joblib
