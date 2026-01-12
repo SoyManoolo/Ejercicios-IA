@@ -38,4 +38,4 @@ class model:
 
     # En esta funcion obtengo el coste o loss del modelo, el cual debo propagar a las capas anteriores para ir calculando las dw, dB y dN / y (esta y se sigue propagando atrás)
     def loss(self, y: np.ndarray, y_train: np.ndarray):
-        return 2*(y - y_train)
+        return (y - y_train)

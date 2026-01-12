@@ -6,3 +6,7 @@ apple-env
 heart-venv
 mnist-env
 __pycache__
+a-venv
+.venv
+data
+venv-skin
