@@ -10,6 +10,8 @@ a-venv
 .venv
 data
 venv-skin
+audiovenv
+resnet-venv
 
 # Archivos de modelos grandes
 *.pth
