@@ -12,6 +12,9 @@ data
 venv-skin
 audiovenv
 resnet-venv
+yolo-venv
+venv-tokenizer
+yolo11n.pt
 
 # Archivos de modelos grandes
 *.pth

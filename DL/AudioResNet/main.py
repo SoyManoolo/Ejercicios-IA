@@ -162,8 +162,9 @@ def train (model: models.ResNet, loss_error: nn.CrossEntropyLoss, train_dataload
     return total_loss / total, correct / total
 
 def eval(model, loss, dataloader):
-    return
+    :   return
 
 for epoch in range(NUM_EPOCAS):
     train_loss, train_acc = train(model, loss, train_loader, optimizer)
-    print(f"Ep {epoch+1:2d}/{NUM_EPOCAS} | Train: {train_acc*100:5.2f}%")
+    print(f"Ep {ep
+        
