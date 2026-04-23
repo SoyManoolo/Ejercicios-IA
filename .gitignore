@@ -15,6 +15,7 @@ resnet-venv
 yolo-venv
 venv-tokenizer
 yolo11n.pt
+transformer-venv
 
 # Archivos de modelos grandes
 *.pth

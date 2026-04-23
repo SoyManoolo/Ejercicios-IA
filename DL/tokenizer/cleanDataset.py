@@ -1,21 +1,31 @@
 import csv
 import re
 
-def limpiar_csv(archivo_entrada, archivo_salida):
+def limpiar_y_guardar_csv(archivo_entrada, archivo_salida):
     regex_html = re.compile('<.*?>')
     
     with open(archivo_entrada, mode='r', encoding='utf-8') as f_in, \
-         open(archivo_salida, mode='w', encoding='utf-8') as f_out:
+         open(archivo_salida, mode='w', encoding='utf-8', newline='') as f_out:
         
         reader = csv.DictReader(f_in)
+        # Definimos las columnas que tendrá el nuevo archivo
+        columnas = ['review', 'sentiment']
+        writer = csv.DictWriter(f_out, fieldnames=columnas)
+        
+        # Escribimos la cabecera (review, sentiment)
+        writer.writeheader()
 
         for row in reader:
-            # Limpiamos el texto
-            texto_limpio = re.sub(regex_html, ' ', row['review'])
-            # Escribimos solo el texto en una línea nueva
-            f_out.write(texto_limpio.strip() + "\n")
+            # 1. Limpiamos el texto
+            texto_limpio = re.sub(regex_html, ' ', row['review']).strip()
+            
+            # 2. Escribimos la fila completa con el texto limpio y su etiqueta original
+            writer.writerow({
+                'review': texto_limpio,
+                'sentiment': row['sentiment']
+            })
 
-    print(f"Dataset limpio guardado en: {archivo_salida}")
+    print(f"Nuevo CSV guardado con éxito en: {archivo_salida}")
 
 # Úsalo así:
-limpiar_csv("./data/dataset.csv", "./data/dataset_limpio.txt")
+limpiar_y_guardar_csv("./data/dataset.csv", "./data/dataset_limpio.csv")
